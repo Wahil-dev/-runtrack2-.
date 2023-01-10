@@ -6,10 +6,10 @@
         for($j=1; $j<=$largeur; $j++) {
             if($j==$largeur) {
                 echo "/";
-                $largeur--;
                 $separe = ($hauteur - $largeur)*2;
+                $largeur--;
                 if($separe>0) {
-                    for($s= 1; $s <= $separe; $s++) {
+                    for($s= 0; $s <= $separe; $s++) {
                         if($s == $separe) {
                             echo "\<br>";
                             continue;
@@ -20,7 +20,9 @@
                         }
                         echo "<span>&nbsp</span>";
                     }
-                } 
+                } else {
+                    echo "\<br>";
+                }
                 continue;
             }
             echo "<span>&nbsp</span>";
