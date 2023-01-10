@@ -1,7 +1,6 @@
 <?php 
     $hauteur = 15;
     $largeur = $hauteur;
-    
     for($i=1; $i<=$hauteur; $i++) {
         for($j=1; $j<=$largeur; $j++) {
             if($j==$largeur) {
