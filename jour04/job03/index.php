@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,14 +8,14 @@
     <title>Job01 -> jour04</title>
 </head>
 <body>
-    <form method="get">
+    <form method="post">
         <input type="text" name="name">
         <input type="submit" value="submit">
     </form>
     <?php
-        $txt = "Le nombre d’argument GET envoyé est :";
-        if(isset($_GET["name"])) {
-            $username = $_GET["name"];
+        $txt = "Le nombre d’argument POST envoyé est :";
+        if(isset($_POST["name"])) {
+            $username = $_POST["name"];
             echo $txt.$username;
         }
     ?>
