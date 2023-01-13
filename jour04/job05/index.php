@@ -8,13 +8,13 @@
 </head>
 <body>
     <form method="post">
-        <input type="text" name="username">
+        <input type="text" name="user_name">
         <input type="password" name="password">
         <input type="submit" value='submit'>
     </form>
     <?php
-        if(isset($_POST["username"], $_POST["password"])) {
-            $username = $_POST["username"];
+        if(isset($_POST["user_name"], $_POST["password"])) {
+            $username = $_POST["user_name"];
             $password = $_POST["password"];
             if($username == "John" && $password == "Rambo") {
                 echo "C’est pas ma guerre";
