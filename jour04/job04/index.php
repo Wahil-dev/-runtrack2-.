@@ -7,14 +7,14 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="get">
+    <form method="post">
         Nom : <input type="text" name="nom">
         Prénom : <input type="text" name="prénom">
         <input type="submit" value="submit">
     </form>
 
     <?php 
-        if(isset($_GET['nom'], $_GET['prénom'])) { ?>
+        if(isset($_POST['nom'], $_POST['prénom'])) { ?>
             <table border="2">
                 <thead>
                     <tr>
@@ -24,7 +24,7 @@
                 </thead>
                 <tbody>
                     <?php 
-                        foreach($_GET as $key => $value) {
+                        foreach($_POST as $key => $value) {
                             echo "<tr>
                                 <td>$key</td>
                                 <td>$value</td>
