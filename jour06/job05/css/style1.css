@@ -1,0 +1,14 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+form {
+    background-color: bisque;
+    border: 2px solid red;
+    margin: auto;
+    width: 400px;
+    height: 200px;
+}
