@@ -1,11 +1,9 @@
 <?php
-    $max = 1337;
-
-    for($i=0; $i<$max+1; $i++) {
+    for($i=0; $i<=1337; $i++) {
         if($i == 42) {
             echo "<br><b><u>$i</u></b>";
-            continue;
+        } else {
+            echo "<br>$i";
         };
-        echo "<br>$i";
     }
 ?>

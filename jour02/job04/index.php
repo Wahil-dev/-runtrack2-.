@@ -1,17 +1,18 @@
 <?php
     $max = 100;
-    for($i=0;$i<=$max; $i++) {
-        if($i%3==0) {
-            echo "<br>Fizz";
-            continue;
-        } else if($i%5==0) {
-            echo "<br>Buzz";
-            continue;
-        } else if($i%3==0 && i%5==0) {
-            echo "<br>FizzBuzz";
-            continue;
-        }
+    for($i=1;$i<=$max; $i++) {
+        if($i%3!=0 && $i%5!=0) {
+            echo "<br>$i";
+        } else {
+            if($i%3==0 && $i%5!=0) {
+                echo "<br>Fizz";
 
-        echo "<br>$i";
+            } elseif($i%5==0 && $i%3!=0) {
+                echo "<br>Buzz";
+
+            } elseif($i%3==0 && $i%5==0) {
+                echo "<br>FizzBuzz";
+            } 
+        }
     }
 ?>
