@@ -11,7 +11,7 @@
         header("refresh:0");
         exit();
     } else {
-        $cookieValue += $_COOKIE[$cookieName];
+        $cookieValue = ++$_COOKIE[$cookieName];
         setcookie($cookieName, $cookieValue);
         if(isset($_GET['reset'])) {
             $cookieValue = 0;
