@@ -1,4 +1,88 @@
-
+<?php
+    session_start();
+    function checkIfWin() {
+        if(
+        ($_SESSION["b1"] == "X" && $_SESSION["b2"] == "X" && $_SESSION["b3"] == "X") ||
+        ($_SESSION["b4"] == "X" && $_SESSION["b5"] == "X" && $_SESSION["b6"] == "X") ||
+        ($_SESSION["b7"] == "X" && $_SESSION["b8"] == "X" && $_SESSION["b9"] == "X") ||
+        ($_SESSION["b1"] == "X" && $_SESSION["b5"] == "X" && $_SESSION["b9"] == "X") ||
+        ($_SESSION["b3"] == "X" && $_SESSION["b5"] == "X" && $_SESSION["b7"] == "X") ||
+        ($_SESSION["b1"] == "X" && $_SESSION["b4"] == "X" && $_SESSION["b7"] == "X") ||
+        ($_SESSION["b2"] == "X" && $_SESSION["b5"] == "X" && $_SESSION["b8"] == "X") ||
+        ($_SESSION["b3"] == "X" && $_SESSION["b6"] == "X" && $_SESSION["b9"] == "X")) {
+            return 1;
+        } elseif(
+        ($_SESSION["b1"] == "O" && $_SESSION["b2"] == "O" && $_SESSION["b3"] == "O") ||
+        ($_SESSION["b4"] == "O" && $_SESSION["b5"] == "O" && $_SESSION["b6"] == "O") ||
+        ($_SESSION["b7"] == "O" && $_SESSION["b8"] == "O" && $_SESSION["b9"] == "O") ||
+        ($_SESSION["b1"] == "O" && $_SESSION["b5"] == "O" && $_SESSION["b9"] == "O") ||
+        ($_SESSION["b3"] == "O" && $_SESSION["b5"] == "O" && $_SESSION["b7"] == "O") ||
+        ($_SESSION["b1"] == "O" && $_SESSION["b4"] == "O" && $_SESSION["b7"] == "O") ||
+        ($_SESSION["b2"] == "O" && $_SESSION["b5"] == "O" && $_SESSION["b8"] == "O") ||
+        ($_SESSION["b3"] == "O" && $_SESSION["b6"] == "O" && $_SESSION["b9"] == "O")) {
+            return 2;
+        }
+        return false;
+    }
+    function startGame() {
+        $_SESSION["player"] = 1;
+        for($i=1; $i<=9; $i++) {
+            $_SESSION["b$i"] = "-";
+        } 
+    }
+    function newGame($time) {
+        session_unset();
+        session_destroy();
+        header("refresh:$time");
+        exit();
+    }
+    function endGame() {
+        foreach($_SESSION as $value) {
+            if($value == "-") {
+                return false;
+            }
+        }
+        return true;
+    }
+    if(!isset($_SESSION["player"])) {
+        startGame();
+    } else {
+        if(isset($_POST['btn'])) {
+            $btnClicked = $_POST['btn'];
+            $currentPlayer = 1;
+            if($_SESSION[$btnClicked] == '-') {
+                if($_SESSION["player"] == 1) {
+                    $currentPlayer = 2;
+                    $_SESSION[$btnClicked] = "X";
+                    $_SESSION["player"] = $currentPlayer;
+                } else {
+                    $currentPlayer = 1;
+                    $_SESSION[$btnClicked] = "O";
+                    $_SESSION["player"] = $currentPlayer;
+                }
+                if(checkIfWin() == 1) {
+                    echo "player 1 win";
+                    newGame(1);
+                } elseif(checkIfWin() == 2) {
+                    echo "player 2 win";
+                    newGame(1);
+                }
+            } else {
+                echo "button selected";
+            }
+        }
+    }
+    if(isset($_POST["reset"])) {
+        newGame(0);
+    }
+    echo "
+        <h2>Player : ".$_SESSION["player"]."</h2>
+    ";
+    if(endGame() && !checkIfWin()) {
+        echo "you lose";
+        newGame(1);
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -11,86 +95,29 @@
 </head>
 <body>
     <form action="" method="post">
+        <div class="">
+            <h1></h1>
+        </div>
         <table>
             <tbody>
-                <tr>
-                    <td>
-                        <button type="submit" name="btn" id="btn1" value="1" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn2" value="2" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn3" value="3" class="btn btn-secondary">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit" name="btn" id="btn4" value="4" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn5" value="5" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn6" value="6" class="btn btn-secondary">-</button>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <button type="submit" name="btn" id="btn7" value="7" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn8" value="8" class="btn btn-secondary">-</button>
-                    </td>
-                    <td>
-                        <button type="submit" name="btn" id="btn9" value="9" class="btn btn-secondary">-</button>
-                    </td>
-                </tr>
+                <?php
+                    $c = 1;
+                    $mx = 3;
+                    for($r=1; $r<=3; $r++) {
+                        echo "<tr>";
+                        for($c; $c<=$mx; $c++) {
+                            echo "<td>
+                                <button type='submit' name='btn' id='btn$c' value='b$c' class='btn btn-secondary p-5'>".$_SESSION['b'.$c]."</button>
+                            </td>";
+                        }
+                        echo "</tr>";
+                        $mx = $mx+3;
+                    }
+                ?>
             </tbody>
         </table>
+        <input type="submit" name='reset' value='reset' class='btn btn-primary '>
     </form>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
-
-    <script>
-        function changeBtnValue(value, idBtn) {
-            btn = document.querySelector(`#${idBtn}`);
-            btn.innerHTML = value;
-        }
-    </script>
-    <?php
-        if(!isset($_COOKIE['player'])) {
-            setcookie("player", 1);
-            header("refresh:0");
-            exit();
-        } else {
-            if(isset($_POST['btn'])) {
-                $btnClicked = $_POST['btn'];
-                $currentPlayer = 1;
-                if(!isset($_COOKIE["btnClicked$btnClicked"])) {
-                    if($_COOKIE['player'] == 1) {
-                        $currentPlayer = 2;
-                        // button selected
-                        setcookie("btnClicked$btnClicked", $currentPlayer);
-
-                        setcookie("player", $currentPlayer);
-                        echo "<script>
-                            changeBtnValue('X', 'btn$btnClicked');
-                        </script>";
-                    } else {
-                        $currentPlayer = 1;
-                        // button selected
-                        setcookie("btnClicked$btnClicked", $currentPlayer);
-
-                        setcookie("player", $currentPlayer);
-                        echo "<script>
-                            changeBtnValue('O', 'btn$btnClicked');
-                        </script>";
-                    }
-                } else {
-                    echo "button selected";
-                }
-            }
-        }
-    ?>
 </body>
 </html>
