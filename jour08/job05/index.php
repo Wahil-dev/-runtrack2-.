@@ -79,7 +79,7 @@
         <h2>Player : ".$_SESSION["player"]."</h2>
     ";
     if(endGame() && !checkIfWin()) {
-        echo "you lose";
+        echo "End Game !";
         newGame(1);
     }
 ?>
