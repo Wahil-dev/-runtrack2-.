@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 23 jan. 2023 à 12:00
+-- Généré le : lun. 23 jan. 2023 à 12:01
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -20,27 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Base de données : `jour09`
 --
-
--- --------------------------------------------------------
-
---
--- Structure de la table `etage`
---
-
-CREATE TABLE `etage` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `numero` int(11) NOT NULL,
-  `superficie` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `etage`
---
-
-INSERT INTO `etage` (`id`, `nom`, `numero`, `superficie`) VALUES
-(1, 'RDC', 0, 500),
-(2, 'R+1', 1, 500);
 
 -- --------------------------------------------------------
 
@@ -70,40 +49,9 @@ INSERT INTO `etudiants` (`id`, `prenom`, `nom`, `naissance`, `sexe`, `email`) VA
 (7, 'Ruben', 'Habib', '1993-05-26', 'Homme', 'ruben.habib@laplateforme.io'),
 (8, 'Toto', 'Dupont', '2019-11-07', 'Homme', 'toto@laplateforme.io');
 
--- --------------------------------------------------------
-
---
--- Structure de la table `salles`
---
-
-CREATE TABLE `salles` (
-  `id` int(11) NOT NULL,
-  `nom` varchar(255) NOT NULL,
-  `id_etage` int(11) NOT NULL,
-  `capacité` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Déchargement des données de la table `salles`
---
-
-INSERT INTO `salles` (`id`, `nom`, `id_etage`, `capacité`) VALUES
-(1, 'Lounge', 1, 100),
-(2, 'Studio Son', 1, 5),
-(3, 'Broadcasting', 2, 50),
-(4, 'Bocal Peda', 2, 4),
-(5, 'Coworking', 2, 80),
-(6, 'Studio Video', 2, 5);
-
 --
 -- Index pour les tables déchargées
 --
-
---
--- Index pour la table `etage`
---
-ALTER TABLE `etage`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Index pour la table `etudiants`
@@ -112,32 +60,14 @@ ALTER TABLE `etudiants`
   ADD PRIMARY KEY (`id`);
 
 --
--- Index pour la table `salles`
---
-ALTER TABLE `salles`
-  ADD PRIMARY KEY (`id`);
-
---
 -- AUTO_INCREMENT pour les tables déchargées
 --
-
---
--- AUTO_INCREMENT pour la table `etage`
---
-ALTER TABLE `etage`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `etudiants`
 --
 ALTER TABLE `etudiants`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT pour la table `salles`
---
-ALTER TABLE `salles`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
