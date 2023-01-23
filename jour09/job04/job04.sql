@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 23 jan. 2023 à 12:06
+-- Généré le : lun. 23 jan. 2023 à 12:37
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -38,13 +38,13 @@ CREATE TABLE `salles` (
 -- Déchargement des données de la table `salles`
 --
 
-INSERT INTO `salles` (`id`, `nom`, `id_etage`, `capacité`) VALUES
-(1, 'Lounge', 1, 100),
-(2, 'Studio Son', 1, 5),
-(3, 'Broadcasting', 2, 50),
-(4, 'Bocal Peda', 2, 4),
-(5, 'Coworking', 2, 80),
-(6, 'Studio Video', 2, 5);
+INSERT INTO `salles` (`nom`, `capacité`) VALUES
+('Lounge', 100),
+('Studio Son', 5),
+('Broadcasting', 50),
+('Bocal Peda', 4),
+('Coworking', 80),
+('Studio Video', 5);
 
 --
 -- Index pour les tables déchargées
