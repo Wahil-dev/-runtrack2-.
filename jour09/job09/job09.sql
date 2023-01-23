@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : lun. 23 jan. 2023 à 12:47
+-- Généré le : lun. 23 jan. 2023 à 12:46
 -- Version du serveur : 10.4.27-MariaDB
 -- Version de PHP : 8.0.25
 
@@ -41,10 +41,8 @@ CREATE TABLE `etudiants` (
 --
 
 INSERT INTO `etudiants` (`id`, `prenom`, `nom`, `naissance`, `sexe`, `email`) VALUES
-(1, 'Cyril', 'Zimmermann', '1989-01-02', 'Homme', 'cyril@laplateforme.io'),
-(3, 'Jessica', 'Soriano', '1995-09-08', 'Femme', 'jessica@laplateforme.io'),
-(5, 'Pascal', 'Assens', '1999-12-31', 'Homme', 'pascal@laplateforme.io'),
-(7, 'Ruben', 'Habib', '1993-05-26', 'Homme', 'ruben.habib@laplateforme.io');
+(4, 'Roxan', 'Roumégas', '2016-09-08', 'Homme', 'roxan@laplateforme.io'),
+(8, 'Toto', 'Dupont', '2019-11-07', 'Homme', 'toto@laplateforme.io');
 
 --
 -- Index pour les tables déchargées
