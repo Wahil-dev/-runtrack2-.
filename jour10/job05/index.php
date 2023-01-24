@@ -6,7 +6,7 @@
 
     try {
         $conn = new PDO("mysql:host=$serverName; dbname=$dbname", $user, $pass);
-        $request = $conn->query("SELECT * FROM etudiants WHERE 2023 - LEFT (naissance, 4) > 18");
+        $request = $conn->query("SELECT * FROM etudiants WHERE 2023 - LEFT (naissance, 4) < 18");
         $request->execute();
 
     } catch(PDOException $e) {
@@ -37,9 +37,9 @@
                 <?php while($result = $request->fetchObject()) :?>
                     <tr>
                         <td><?= $result->prenom;?></td>
-                        <td><?= $result->email;?></td>
-                        <td><?= $result->email;?></td>
-                        <td><?= $result->email;?></td>
+                        <td><?= $result->nom;?></td>
+                        <td><?= $result->naissance;?></td>
+                        <td><?= $result->sexe;?></td>
                         <td><?= $result->email;?></td>
                     </tr>
                 <?php endwhile; ?>
