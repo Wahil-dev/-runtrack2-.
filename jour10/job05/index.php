@@ -26,6 +26,7 @@
         <table border="4">
             <thead>
                 <tr>
+                    <th>id</th>
                     <th>prenom</th>
                     <th>nom</th>
                     <th>naissance</th>
@@ -36,6 +37,7 @@
             <tbody>
                 <?php while($result = $request->fetchObject()) :?>
                     <tr>
+                        <td><?= $result->id;?></td>
                         <td><?= $result->prenom;?></td>
                         <td><?= $result->nom;?></td>
                         <td><?= $result->naissance;?></td>

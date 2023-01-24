@@ -9,7 +9,7 @@
         printf("Connect failed: %s\n", $conn->connect_error);
         exit();
     }
-    $request = $conn->query("SELECT prenom, nom, naissance, sexe, email FROM etudiants");
+    $request = $conn->query("SELECT * FROM etudiants");
     $result = $request->fetch_all(MYSQLI_ASSOC);
     /* check connection */
 ?>
@@ -36,6 +36,7 @@
             <?php
                 for($i=1; isset($result[$i]); $i++): ?>
                     <tr>
+                        <td><?= $result[$i]["id"] ?></td>
                         <td><?= $result[$i]["prenom"] ?></td>
                         <td><?= $result[$i]["nom"] ?></td>
                         <td><?= $result[$i]["naissance"] ?></td>

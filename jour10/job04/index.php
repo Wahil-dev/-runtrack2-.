@@ -7,7 +7,7 @@
     try {
         $conn = new PDO("mysql:host=$serverName; dbname=$dbname", $user, $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        $request = $conn->prepare("SELECT prenom, nom, naissance, sexe, email FROM etudiants WHERE LEFT (prenom, 1) = 'T'");
+        $request = $conn->prepare("SELECT * FROM etudiants WHERE LEFT (prenom, 1) = 'T'");
         $request->execute();
         $result = $request->fetchAll(PDO::FETCH_ASSOC);
     } catch(PDOException $e) {
@@ -37,6 +37,7 @@
                 <?php 
                     for($i=0; isset($result[$i]); $i++) :?>
                         <tr>
+                            <th><?= $result[$i]["id"] ?></th>
                             <th><?= $result[$i]["prenom"] ?></th>
                             <th><?= $result[$i]["nom"] ?></th>
                             <th><?= $result[$i]["naissance"] ?></th>
